@@ -38,7 +38,7 @@
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% url 'category' 'ME' %}">Liqueur</a></li>
                   <li><a class="dropdown-item" href="{% url 'category' 'IN' %}">Farines</a></li>
-                  <li><a class="dropdown-item" href="{% url 'category' 'PO' %}">Poudres d'épices</a></li>
+                  <li><a class="dropdown-item" href="{% url 'category' 'PO' %}">Amuse-gueule</a></li>
               </ul>
               </li>
               <li class="nav-item">
@@ -60,7 +60,7 @@
                     <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
                     <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
                     <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
-                    <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                    <li><a class="dropdown-item" href="{% url 'logout' %}">Deconnexion</a></li>
                 </ul>
             </li>
             <li class="nav-item mx-2">
@@ -71,10 +71,10 @@
             </li>
             {% else %}
             <li class="nav-item mx-2">
-                <a href="{% url 'login' %}" class="nav-link text-white">Login</a>
+                <a href="{% url 'login' %}" class="nav-link text-white">Connexion</a>
             </li>
             <li class="nav-item mx-2">
-                <a href="{% url 'customerregistration' %}" class="nav-link text-white">Registration</a>
+                <a href="{% url 'customerregistration' %}" class="nav-link text-white">S'enregister</a>
             </li>
             {% endif %}
           </ul>

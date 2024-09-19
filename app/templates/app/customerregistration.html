@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row my-3">
         <div class="col-sm-6 offset-sm-3">
-            <h3>Customer Registration</h3>
+            <h3>Enregistrement du client/visiteur</h3>
             <hr>
 
             <form action="" method="post" novalidate class="shadow p-5">
@@ -13,11 +13,11 @@
                 {% for fm in form %}
                     {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small> <br>     
                 {% endfor %}
-                <input type="submit" value="Submit" class="btn btn-primary"> <br>
+                <input type="submit" value="Soumettre" class="btn btn-primary"> <br>
 
                 <div class="text-center text-primary fw-bold">
-                    <small>Existing User ? <a href="{% url 'login' %}"
-                        class="text-danger">Login Now</a> </small>
+                    <small>Ta deja un compte ? <a href="{% url 'login' %}"
+                        class="text-danger">Connectez vous maintenant</a> </small>
                 </div>
 
                 {% if form.non_field_errors %}
