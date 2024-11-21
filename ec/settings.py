@@ -26,10 +26,10 @@ SECRET_KEY = "django-insecure-hguv9*+03^vr_y5ac(6jwy04lbv#7d0n#!nqcyd68y1cfon)7g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '18ab-196-168-193-223.ngrok-free.app']
+ALLOWED_HOSTS = ['127.0.0.1', 'sea-lion-app-2fbb7.ondigitalocean.app']
 
 
-CSRF_TRUSTED_ORIGINS = ['https://18ab-196-168-193-223.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['sea-lion-app-2fbb7.ondigitalocean.app']
 
 # Application definition
 
