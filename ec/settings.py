@@ -29,7 +29,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'sea-lion-app-2fbb7.ondigitalocean.app']
 
 
-CSRF_TRUSTED_ORIGINS = ['sea-lion-app-2fbb7.ondigitalocean.app']
+CSRF_TRUSTED_ORIGINS = ['https://sea-lion-app-2fbb7.ondigitalocean.app']
 
 # Application definition
 
