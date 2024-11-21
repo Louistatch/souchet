@@ -1,1 +1,1 @@
-web: gunicorn ec.wsgi:application
+web: gunicorn souchet.ec.wsgi:application
