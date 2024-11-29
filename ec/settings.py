@@ -26,10 +26,10 @@ SECRET_KEY = "django-insecure-hguv9*+03^vr_y5ac(6jwy04lbv#7d0n#!nqcyd68y1cfon)7g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'laclemencegroupe.com']
+ALLOWED_HOSTS = ['www.laclemencegroupe.com', 'laclemencegroupe.com']
 
 
-CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com']
+CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com', 'www.laclemencegroupe.com']
 
 # Application definition
 
