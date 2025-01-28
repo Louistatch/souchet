@@ -1,35 +1,128 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}Category{% endblock title %}
+{% block title %}{{ product.title }} - Détails{% endblock title %}
 
 {% block main-content %}
-    <div class="container my-5">
-        <div class="row flex justify-content-between">
-            <div class="img2 col-lg-5 mt-5">
-                <img src="{{product.product_image.url}}" class="image col-xs-6 col-sm-12 col-lg-12 mt-3 text-sm-center w-100 h-75"  alt="">
+<div class="container py-5">
+    <div class="row">
+        <!-- Image du produit -->
+        <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="position-relative">
+                <img src="{{product.product_image.url}}" class="image img-fluid rounded-lg shadow-lg" alt="{{product.title}}">
             </div>
-            <div class="productdetail col-lg-5">
-                <h1 style="font-family: Georgia; font-size: 50px;">{{product.title}}</h1> 
-                <h5>FCFA.{{product.discounted_price}}/-</h5>
-                <small class="text-decoration-line-through text-muted fs-5"><del>FCFA. {{product.selling_price}}/- </small></del>
-                <br><br><h4>Product Features</h4>
-                <ul class="fs-5"  style="font-family: Rajdhani;">
-                    <li>{{product.description}}</li>
-                    <li>Compisition : {{product.composition}}</li>
-                    <li>Use :{{product.prodapp}}</li>
-                </ul>
+        </div>
+
+        <!-- Détails du produit -->
+        <div class="col-lg-6">
+            <div class="product-details bg-light p-4 rounded-lg shadow-sm">
+                <!-- En-tête du produit -->
+                <h1 class="display-5 mb-3 text-success fw-bold">{{product.title}}</h1>
                 
-                <form action="/add-to-cart" class="d-inline"> 
-                    <input type="hidden" name="prod_id" value={{product.id}} />
-                    <button type="submit" class="btn btn-primary shadow px-5 py-2">Add to Cart</button> 
-                </form>
-                <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-5 py-2 ms-4">Buy Now</a>
-                {% if wishlist %}
-                <a pid={{product.id}} class="minus-wishlist btn btn-danger shadow px-5 py-2 ms-4"><i class="fas fa-heart fa-lg"></i></a>
-               {% else %}
-                <a pid={{product.id}} class="plus-wishlist btn btn-success shadow px-5 py-2 ms-4"><i class="fas fa-heart fa-lg"></i></a>
-               {% endif %}
+                <!-- Prix -->
+                <div class="pricing mb-4">
+                    <h3 class="text-success mb-2">{{product.discounted_price}} FCFA</h3>
+                    {% if product.selling_price != product.discounted_price %}
+                    <p class="text-muted">
+                        <del class="me-2">{{product.selling_price}} FCFA</del>
+                        <span class="badge bg-success">
+                            -{{product.discount_percentage}}%
+                        </span>
+                    </p>
+                    {% endif %}
+                </div>
+
+                <!-- Description -->
+                <div class="product-description mb-4">
+                    <h4 class="h5 text-success mb-3">Description du Produit</h4>
+                    <p class="lead mb-4">{{product.description}}</p>
+                </div>
+
+                <!-- Caractéristiques -->
+                <div class="product-features mb-4">
+                    <h4 class="h5 text-success mb-3">Caractéristiques</h4>
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <div class="d-flex align-items-center bg-white p-3 rounded">
+                                <i class="fas fa-leaf text-success fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Composition</h6>
+                                    <p class="mb-0">{{product.composition}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex align-items-center bg-white p-3 rounded">
+                                <i class="fas fa-info-circle text-success fs-4 me-3"></i>
+                                <div>
+                                    <h6 class="mb-1">Utilisation</h6>
+                                    <p class="mb-0">{{product.prodapp}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="contact-section bg-white p-4 rounded">
+                    <h4 class="h5 text-success mb-3">Intéressé par ce produit ?</h4>
+                    <p class="mb-3">Contactez-nous pour plus d'informations ou pour passer commande.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{% url 'contact' %}" class="btn btn-success">
+                            <i class="fas fa-envelope me-2"></i>Nous Contacter
+                        </a>
+                        <a href="tel:+22893236160" class="btn btn-outline-success">
+                            <i class="fas fa-phone me-2"></i>+228 93236160
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Produits similaires -->
+    {% if related_products %}
+    <div class="related-products mt-5">
+        <h2 class="h3 text-success mb-4">Produits Similaires</h2>
+        <div class="row g-4">
+            {% for related in related_products %}
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow-sm hover-shadow">
+                    <img src="{{related.product_image.url}}" class="card-img-top" alt="{{related.title}}">
+                    <div class="card-body">
+                        <h5 class="card-title mb-2">{{related.title}}</h5>
+                        <p class="text-success mb-0">{{related.discounted_price}} FCFA</p>
+                    </div>
+                    <a href="{% url 'product-detail' related.id %}" class="stretched-link"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Styles spécifiques -->
+{% block scripts %}
+<style>
+    .hover-shadow:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+    }
+    .rounded-lg {
+        border-radius: 1rem !important;
+    }
+    .product-details {
+        height: 100%;
+    }
+    .card img {
+        height: 200px;
+        object-fit: cover;
+    }
+    .image {
+        width: 100%;
+        height: 75%;
+        object-fit: cover;
+    }
+</style>
+{% endblock scripts %}
 {% endblock main-content %}

@@ -1,15 +1,22 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}Address{% endblock title %}
+{% block title %}Adresse{% endblock title %}
 {% block main-content %}
 <div class="container my-5">
     <div class="row">
-     <h3>Welcome <span class="text-capitalize">{{request.user}}</span></h3>
-    
+        <h3>Bienvenue <span class="text-capitalize">{{request.user}}</span></h3>
         <div class="col-sm-2 border-end">
             <ul class="list-unstyled">
-            <li class="d-grid"><a href="{% url 'profile' %}" class="btn ">Profile</a></li>
-            <li class="d-grid"><a href="{% url 'address' %}" class="btn btn-primary">Address</a></li>
+                <li class="d-grid mb-3">
+                    <a href="{% url 'profile' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-user me-2"></i>Profil
+                    </a>
+                </li>
+                <li class="d-grid">
+                    <a href="{% url 'address' %}" class="btn btn-primary">
+                        <i class="fas fa-map-marker-alt me-2"></i>Adresse
+                    </a>
+                </li>
             </ul>
         </div>
 
@@ -17,17 +24,23 @@
             <div class="row">
                 {% for ad in add %}
                 <div class="col-sm-6">
-                    <div class="card m-2">
-                     <div class="card-body">
-                      <h3>Address {{forloop.counter}}</h3>
-                      <p>Name: {{ad.name}}</p>
-                      <p>Locality: {{ad.locality}}</p>
-                      <p>Mobile: {{ad.mobile}}</p>
-                      <p>City: {{ad.city}}</p>
-                      <p>State: {{ad.state}}</p>
-                      <p>Pincode: {{ad.zipcode}}</p> 
-                      <p class="text-center"><a href="{% url 'updateAddress' pk=ad.id %}" type="button" class="btn btn-success">Update</a></p>
-                     </div>
+                    <div class="card m-2 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title">Adresse {{forloop.counter}}</h4>
+                            <ul class="list-unstyled">
+                                <li><strong>Nom :</strong> {{ad.name}}</li>
+                                <li><strong>Localité :</strong> {{ad.locality}}</li>
+                                <li><strong>Téléphone :</strong> {{ad.mobile}}</li>
+                                <li><strong>Ville :</strong> {{ad.city}}</li>
+                                <li><strong>État :</strong> {{ad.state}}</li>
+                                <li><strong>Code Postal :</strong> {{ad.zipcode}}</li>
+                            </ul>
+                            <div class="text-center mt-3">
+                                <a href="{% url 'updateAddress' pk=ad.id %}" class="btn btn-success">
+                                    <i class="fas fa-edit me-2"></i>Mettre à jour
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 {% endfor %}

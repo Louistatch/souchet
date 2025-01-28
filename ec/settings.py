@@ -26,10 +26,9 @@ SECRET_KEY = "django-insecure-hguv9*+03^vr_y5ac(6jwy04lbv#7d0n#!nqcyd68y1cfon)7g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.laclemencegroupe.com', 'laclemencegroupe.com']
+ALLOWED_HOSTS = ['www.laclemencegroupe.com', 'laclemencegroupe.com', '127.0.0.1', 'localhost']
 
-
-CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com', 'www.laclemencegroupe.com']
+CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com', 'https://www.laclemencegroupe.com']
 
 # Application definition
 
@@ -111,13 +110,15 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.1/howto/static-files/
-
-STATIC_URL = "/static/"
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR/'media'
-LOGIN_REDIRECT_URL = '/profile/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'app/static')
+]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+LOGIN_REDIRECT_URL = '/profile/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

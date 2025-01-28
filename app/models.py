@@ -12,8 +12,8 @@ STATE_CHOICES = (
 
 CATEGORY_CHOICES = (
     ('ME', 'Liqueur'),
-    ('IN', 'Farines'),
-    ('PO', 'Amuse-gueule'),
+    ('FA', 'Farines'),
+    ('LA', 'Amuse-gueule'),
 )
 
 class Product(models.Model):

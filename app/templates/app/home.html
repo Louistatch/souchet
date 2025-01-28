@@ -1,77 +1,188 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}Acceuil{% endblock title %}
+{% block title %}Accueil{% endblock title %}
 
 {% block banner-slider %}
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'app/images/banner/b1.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/images/banner/b2.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/images/banner/b3.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/images/banner/b4.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
+<!-- Carousel -->
+<div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="2"></button>
+        <button type="button" data-bs-target="#homeCarousel" data-bs-slide-to="3"></button>
     </div>
-  </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'app/images/banner/b1.jpg' %}" class="d-block w-100" alt="La Clémence Groupe">
+            <div class="carousel-caption d-none d-md-block">
+                <h1 class="display-4 fw-bold text-shadow">Bienvenue chez La Clémence Groupe</h1>
+                <p class="lead fs-3">Votre partenaire de confiance dans la transformation du souchet</p>
+                <a href="#nos-produits" class="btn btn-success btn-lg px-4 py-2">Découvrir nos produits</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'app/images/banner/b2.jpg' %}" class="d-block w-100" alt="Nos produits artisanaux">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="display-4 fw-bold text-shadow">Excellence Artisanale</h2>
+                <p class="lead fs-3">Des produits authentiques élaborés avec passion</p>
+                <a href="{% url 'about' %}" class="btn btn-success btn-lg px-4 py-2">Notre Histoire</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'app/images/banner/b3.jpg' %}" class="d-block w-100" alt="Innovation et Tradition">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="display-4 fw-bold text-shadow">Innovation & Tradition</h2>
+                <p class="lead fs-3">L'alliance parfaite entre savoir-faire traditionnel et innovation</p>
+                <a href="{% url 'contact' %}" class="btn btn-success btn-lg px-4 py-2">Contactez-nous</a>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'app/images/banner/b4.jpg' %}" class="d-block w-100" alt="Notre Engagement">
+            <div class="carousel-caption d-none d-md-block">
+                <h2 class="display-4 fw-bold text-shadow">Notre Engagement</h2>
+                <p class="lead fs-3">Une qualité constante pour votre satisfaction</p>
+                <a href="{% url 'contact' %}" class="btn btn-success btn-lg px-4 py-2">En savoir plus</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#homeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
 {% endblock banner-slider %}
 
-{% block information %}
-<div class="container">
-  <div class="row bg-success text-center p-5 text-white border-bottom shadow">
-      <h1>Produits</h1>
-      <small class="fs-5">
-          Clemence Groupe est une entreprise dédiée à la valorisation du souchet, transformant cette précieuse ressource en une variété de produits innovants et savoureux. 
-          Notre expertise repose sur la production de lait de souchet, de crèmes délicieuses, de liqueurs raffinées, d'amuse-bouches nutritifs et de farine de haute qualité.
-
-          Chacun de nos produits est conçu pour apporter une expérience unique, respectant les traditions tout en intégrant des innovations modernes, afin de satisfaire les besoins de nos clients dans divers domaines culinaires et nutritionnels.
-      </small>
-  </div>
-</div>
-
-{% endblock information %}
-
 {% block main-content %}
-<div class="container">
-    <h2 class="text-center">Produits</h2>
-    <br><br>
-    <div class="row container">
-        <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s" style="animation-duration: 1s; animation-delay: 0.6s; animation-name: none;">
-            <div class="goodnesssec buttermilk smbg">
-              <a href="{% url 'category' 'ME' %}">
-                <div class="goodnessseccont text-center">
-                  <img src="{% static 'app/images/product/Liqueur.jpeg' %}" class="img-responsive center-block" alt="Mélanges d'épices">
-                  <p class="mlkpro">Liqueur</p>
+<!-- Caractéristiques -->
+<section class="py-4 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-leaf fa-2x text-success me-3"></i>
+                    <div>
+                        <h3 class="h5 mb-1">100% Naturel</h3>
+                        <p class="mb-0">Des produits purs et authentiques</p>
+                    </div>
                 </div>
-              </a>
             </div>
-        </div>
-        <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s" style="animation-duration: 1s; animation-delay: 0.6s; animation-name: none;">
-            <div class="goodnesssec buttermilk curdbgpro">
-              <a href="{% url 'category' 'IN' %}">
-                <div class="goodnessseccont text-center">
-                  <img src="{% static 'app/images/product/Farines.jpeg' %}" class="img-responsive center-block" alt="Infusions">
-                  <p class="mlkpro">Farines</p>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-award fa-2x text-success me-3"></i>
+                    <div>
+                        <h3 class="h5 mb-1">Qualité Premium</h3>
+                        <p class="mb-0">Excellence garantie</p>
+                    </div>
                 </div>
-              </a>
             </div>
-        </div>
-        <div class="col-md-4 col-sm-4 mi-go wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.6s" style="animation-duration: 1s; animation-delay: 0.6s; animation-name: none;">
-            <div class="goodnesssec buttermilk buttermilk">
-              <a href="{% url 'category' 'PO' %}">
-                <div class="goodnessseccont text-center">
-                  <img src="{% static 'app/images/product/Amuse-gueule.jpeg' %}" class="img-responsive center-block" alt="Poudres d'épices">
-                  <p class="mlkpro">Amuse-gueule</p>
+            <div class="col-md-4">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-truck fa-2x text-success me-3"></i>
+                    <div>
+                        <h3 class="h5 mb-1">Livraison Rapide</h3>
+                        <p class="mb-0">Dans tout le Cameroun</p>
+                    </div>
                 </div>
-              </a>
             </div>
         </div>
     </div>
-</div>
-<br/><br/>
+</section>
+
+<!-- Produits -->
+<section id="nos-produits" class="py-5">
+    <div class="container">
+        <h2 class="display-5 mb-4 text-center">Nos Produits d'Excellence</h2>
+        <p class="lead text-center mb-5">Découvrez notre gamme exclusive de produits à base de souchet</p>
+        <div class="row g-4">
+            {% for product in liqueurs %}
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm hover-scale">
+                    <div class="position-relative">
+                        <img src="{{ product.product_image.url }}" class="card-img-top" alt="{{ product.title }}">
+                        {% if product.discounted_price < product.selling_price %}
+                        <div class="position-absolute top-0 end-0 bg-danger text-white px-3 py-1 m-2 rounded-pill">
+                            Promo
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="card-body text-center">
+                        <h3 class="card-title h5">{{ product.title }}</h3>
+                        <p class="card-text text-muted">{{ product.description|truncatewords:20 }}</p>
+                        <div class="d-flex justify-content-center gap-2 mb-3">
+                            <span class="text-muted text-decoration-line-through">{{ product.selling_price }} FCFA</span>
+                            <span class="text-success fw-bold fs-5">{{ product.discounted_price }} FCFA</span>
+                        </div>
+                        <a href="{% url 'product-detail' product.id %}" class="btn btn-outline-success w-100">Découvrir</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Engagement qualité -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h2 class="display-5 mb-4">Notre Engagement Qualité</h2>
+                <p class="lead mb-4">Chez La Clémence Groupe, nous nous engageons à maintenir les plus hauts standards de qualité.</p>
+                <div class="d-grid gap-3">
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-check-circle text-success me-3 fa-2x"></i>
+                        <div>
+                            <h4 class="h5 mb-1">Sélection Premium</h4>
+                            <p class="mb-0">Nous sélectionnons uniquement les meilleurs souchets locaux</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-leaf text-success me-3 fa-2x"></i>
+                        <div>
+                            <h4 class="h5 mb-1">Transformation Respectueuse</h4>
+                            <p class="mb-0">Un processus qui préserve toutes les qualités du souchet</p>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-certificate text-success me-3 fa-2x"></i>
+                        <div>
+                            <h4 class="h5 mb-1">Traçabilité Totale</h4>
+                            <p class="mb-0">Suivi complet de la production à la livraison</p>
+                        </div>
+                    </div>
+                </div>
+                <a href="{% url 'about' %}" class="btn btn-success btn-lg mt-4">En savoir plus</a>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'app/images/Neel.jpeg' %}" alt="Notre engagement qualité" 
+                     class="img-fluid rounded-3 shadow-lg" style="object-fit: cover; width: 100%; max-height: 500px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Newsletter -->
+<section class="py-5 bg-success text-white">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <h2 class="display-5 mb-4">Rejoignez l'Aventure La Clémence</h2>
+                <p class="lead mb-4">Recevez en avant-première nos actualités, offres exclusives et conseils d'utilisation</p>
+                <form class="row justify-content-center g-3">
+                    <div class="col-md-8">
+                        <div class="input-group input-group-lg">
+                            <input type="email" class="form-control" placeholder="Votre adresse e-mail">
+                            <button class="btn btn-light px-4" type="submit">
+                                <i class="fas fa-paper-plane me-2"></i>S'abonner
+                            </button>
+                        </div>
+                        <small class="text-white-50 mt-2 d-block">En vous inscrivant, vous acceptez de recevoir nos newsletters</small>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock main-content %}

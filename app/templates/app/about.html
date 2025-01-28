@@ -1,42 +1,137 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}About{% endblock title %}
+{% block title %}À Propos{% endblock title %}
 
 {% block banner-slider %}
-  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img src="{% static 'app/images/banner/b1.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/images/banner/b2.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/images/banner/b3.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
-      <div class="carousel-item">
-        <img src="{% static 'app/images/banner/b4.jpg' %}" class="d-block w-100" alt="banner image">
-      </div>
+<div class="bg-success text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4 fw-bold text-shadow">À Propos de Nous</h1>
+        <p class="lead fs-3">Découvrez notre histoire et notre mission</p>
     </div>
-  </div>
+</div>
 {% endblock banner-slider %}
 
 {% block main-content %}
-<div class="container mt-3">
-  <br>
-  <h2 class="text-center">À Propos de Nous</h2>
-  <br>
-  <div class="row container">
-      <p class="fs-4 text-center">Clemence Groupe est une entreprise innovante spécialisée dans la transformation du souchet. Notre siège social est situé à Lome, Togo. Nous nous distinguons par notre engagement envers la qualité et l'innovation dans le secteur alimentaire. Depuis le début de notre production, nous nous sommes rapidement imposés comme un acteur clé, offrant une gamme diversifiée de produits à base de souchet, incluant des laits, crèmes, liqueurs, amuse-bouches, et farines.</p>
-  </div>
+<div class="container py-5">
+    <!-- Présentation -->
+    <div class="row mb-5 align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="position-relative">
+                <img src="{% static 'app/images/about_us.jpg' %}" class="img-fluid rounded-lg shadow-lg" alt="À Propos de Clemence Groupe">
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-success opacity-10 rounded-lg"></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="p-4 bg-light rounded-lg shadow-sm">
+                <h2 class="display-6 mb-4 text-success fw-bold">Notre Histoire</h2>
+                <p class="lead mb-4">Clemence Groupe est une entreprise innovante spécialisée dans la transformation du souchet. Notre siège social est situé à Lomé, Togo.</p>
+                <p class="mb-4">Nous nous distinguons par notre engagement envers la qualité et l'innovation dans le secteur alimentaire. Depuis le début de notre production, nous nous sommes rapidement imposés comme un acteur clé, offrant une gamme diversifiée de produits à base de souchet.</p>
+                <div class="row g-4 mt-4">
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success fs-4 me-2"></i>
+                            <span>Laits et Crèmes</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success fs-4 me-2"></i>
+                            <span>Liqueurs</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success fs-4 me-2"></i>
+                            <span>Amuse-bouches</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-success fs-4 me-2"></i>
+                            <span>Farines</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  <br><br>
-  <h2 class="text-center">Mission</h2>
-  <br>
-  <div class="row container">  
-      <p class="fs-4 text-center">Notre mission chez Clemence Groupe est de valoriser le souchet à travers des produits de haute qualité, en utilisant des techniques de transformation innovantes. Nous nous engageons à satisfaire les besoins de nos clients en offrant des produits uniques et raffinés, tout en soutenant la communauté agricole. Nous visons à allier tradition et modernité pour créer des solutions culinaires qui répondent aux attentes de nos clients et enrichissent leur expérience gastronomique.</p>
-  </div>
+    <!-- Mission et Valeurs -->
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card h-100 border-0 shadow-sm hover-shadow">
+                <div class="card-body text-center p-4">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mb-3">
+                        <i class="fas fa-bullseye text-success fs-1"></i>
+                    </div>
+                    <h3 class="h4 mb-3">Notre Mission</h3>
+                    <p>Valoriser le souchet à travers des produits de haute qualité, en utilisant des techniques de transformation innovantes.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+            <div class="card h-100 border-0 shadow-sm hover-shadow">
+                <div class="card-body text-center p-4">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mb-3">
+                        <i class="fas fa-eye text-success fs-1"></i>
+                    </div>
+                    <h3 class="h4 mb-3">Notre Vision</h3>
+                    <p>Devenir le leader de la transformation du souchet en Afrique, en alliant tradition et modernité.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm hover-shadow">
+                <div class="card-body text-center p-4">
+                    <div class="rounded-circle bg-success bg-opacity-10 p-3 d-inline-block mb-3">
+                        <i class="fas fa-heart text-success fs-1"></i>
+                    </div>
+                    <h3 class="h4 mb-3">Nos Valeurs</h3>
+                    <p>Qualité, innovation, engagement communautaire et satisfaction client sont au cœur de nos valeurs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Engagement -->
+    <div class="row align-items-center bg-light rounded-lg p-5">
+        <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+            <div class="position-relative">
+                <img src="{% static 'app/images/mission.jpg' %}" class="img-fluid rounded-lg shadow-lg" alt="Notre Mission chez Clemence Groupe">
+                <div class="position-absolute top-0 start-0 w-100 h-100 bg-success opacity-10 rounded-lg"></div>
+            </div>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <h2 class="display-6 mb-4 text-success fw-bold">Notre Engagement</h2>
+            <p class="lead mb-4">Nous nous engageons à satisfaire les besoins de nos clients en offrant des produits uniques et raffinés, tout en soutenant la communauté agricole.</p>
+            <div class="d-flex align-items-center mb-3">
+                <i class="fas fa-leaf text-success fs-4 me-3"></i>
+                <span>Production responsable et durable</span>
+            </div>
+            <div class="d-flex align-items-center mb-3">
+                <i class="fas fa-users text-success fs-4 me-3"></i>
+                <span>Soutien aux agriculteurs locaux</span>
+            </div>
+            <div class="d-flex align-items-center">
+                <i class="fas fa-star text-success fs-4 me-3"></i>
+                <span>Qualité premium garantie</span>
+            </div>
+        </div>
+    </div>
 </div>
-<br><br>
-
 {% endblock main-content %}
+
+{% block scripts %}
+<style>
+    .hover-shadow:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+    }
+    .rounded-lg {
+        border-radius: 1rem !important;
+    }
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+</style>
+{% endblock scripts %}
