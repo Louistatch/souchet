@@ -1,6 +1,6 @@
 {% extends 'app/base.html' %}
 {% load static %}
-{% block title %}Category{% endblock title %}
+{% block title %}Catégorie{% endblock title %}
 
 {% block main-content %}
     <div class="container my-5">
@@ -33,3 +33,7 @@
         </div>
     </div>
 {% endblock main-content %}
+
+{% block page_specific_scripts %}
+<script src="{% static 'app/js/category.js' %}"></script>
+{% endblock page_specific_scripts %}

@@ -2,6 +2,92 @@
 {% load static %}
 {% block title %}Accueil{% endblock title %}
 
+{% block extra_head %}
+<style>
+    /* Animations */
+    .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    
+    .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .hover-scale {
+        transition: transform 0.3s ease;
+    }
+
+    .hover-scale:hover {
+        transform: scale(1.03);
+    }
+
+    .feature-icon {
+        transition: transform 0.3s ease;
+    }
+
+    .feature-icon:hover {
+        transform: rotate(360deg);
+    }
+
+    .carousel-item {
+        transition: transform 1.2s ease-in-out;
+    }
+
+    .btn {
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Parallax effect */
+    .parallax {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    /* Counter animation */
+    .counter-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #198754;
+    }
+
+    /* Progress bar */
+    .progress {
+        height: 5px;
+        margin-bottom: 20px;
+    }
+
+    .progress-bar {
+        width: 0;
+        transition: width 1.5s ease-in-out;
+    }
+
+    /* Back to top button */
+    #backToTop {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        z-index: 99;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    #backToTop.visible {
+        opacity: 1;
+    }
+</style>
+{% endblock %}
+
 {% block banner-slider %}
 <!-- Carousel -->
 <div id="homeCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -59,27 +145,27 @@
 <section class="py-4 bg-light">
     <div class="container">
         <div class="row g-4">
-            <div class="col-md-4">
+            <div class="col-md-4 fade-in">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-leaf fa-2x text-success me-3"></i>
+                    <i class="fas fa-leaf fa-2x text-success me-3 feature-icon"></i>
                     <div>
                         <h3 class="h5 mb-1">100% Naturel</h3>
                         <p class="mb-0">Des produits purs et authentiques</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 fade-in">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-award fa-2x text-success me-3"></i>
+                    <i class="fas fa-award fa-2x text-success me-3 feature-icon"></i>
                     <div>
                         <h3 class="h5 mb-1">Qualité Premium</h3>
                         <p class="mb-0">Excellence garantie</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 fade-in">
                 <div class="d-flex align-items-center">
-                    <i class="fas fa-truck fa-2x text-success me-3"></i>
+                    <i class="fas fa-truck fa-2x text-success me-3 feature-icon"></i>
                     <div>
                         <h3 class="h5 mb-1">Livraison Rapide</h3>
                         <p class="mb-0">Dans tout le Cameroun</p>
@@ -93,11 +179,11 @@
 <!-- Produits -->
 <section id="nos-produits" class="py-5">
     <div class="container">
-        <h2 class="display-5 mb-4 text-center">Nos Produits d'Excellence</h2>
-        <p class="lead text-center mb-5">Découvrez notre gamme exclusive de produits à base de souchet</p>
+        <h2 class="display-5 mb-4 text-center fade-in">Nos Produits d'Excellence</h2>
+        <p class="lead text-center mb-5 fade-in">Découvrez notre gamme exclusive de produits à base de souchet</p>
         <div class="row g-4">
             {% for product in liqueurs %}
-            <div class="col-md-4">
+            <div class="col-md-4 fade-in">
                 <div class="card h-100 border-0 shadow-sm hover-scale">
                     <div class="position-relative">
                         <img src="{{ product.product_image.url }}" class="card-img-top" alt="{{ product.title }}">
@@ -127,7 +213,7 @@
 <section class="py-5 bg-light">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-md-6">
+            <div class="col-md-6 fade-in">
                 <h2 class="display-5 mb-4">Notre Engagement Qualité</h2>
                 <p class="lead mb-4">Chez La Clémence Groupe, nous nous engageons à maintenir les plus hauts standards de qualité.</p>
                 <div class="d-grid gap-3">
@@ -155,9 +241,77 @@
                 </div>
                 <a href="{% url 'about' %}" class="btn btn-success btn-lg mt-4">En savoir plus</a>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 fade-in">
                 <img src="{% static 'app/images/Neel.jpeg' %}" alt="Notre engagement qualité" 
                      class="img-fluid rounded-3 shadow-lg" style="object-fit: cover; width: 100%; max-height: 500px;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistiques -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row text-center g-4">
+            <div class="col-md-4 fade-in">
+                <div class="counter-container">
+                    <div class="counter-value" data-target="1000">0</div>
+                    <h3 class="h5">Clients Satisfaits</h3>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in">
+                <div class="counter-container">
+                    <div class="counter-value" data-target="50">0</div>
+                    <h3 class="h5">Produits Différents</h3>
+                </div>
+            </div>
+            <div class="col-md-4 fade-in">
+                <div class="counter-container">
+                    <div class="counter-value" data-target="15">0</div>
+                    <h3 class="h5">Années d'Expérience</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Progress Bars -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 fade-in">
+                <h3 class="mb-4">Notre Expertise</h3>
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>Qualité des Produits</span>
+                        <span>98%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" data-width="98"></div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>Service Client</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between mb-1">
+                        <span>Innovation</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" data-width="90"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 fade-in">
+                <img src="{% static 'app/images/Neel.jpeg' %}" alt="Notre expertise" 
+                     class="img-fluid rounded-3 shadow-lg" style="object-fit: cover; width: 100%; max-height: 300px;">
             </div>
         </div>
     </div>
@@ -167,7 +321,7 @@
 <section class="py-5 bg-success text-white">
     <div class="container">
         <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
+            <div class="col-lg-8 fade-in">
                 <h2 class="display-5 mb-4">Rejoignez l'Aventure La Clémence</h2>
                 <p class="lead mb-4">Recevez en avant-première nos actualités, offres exclusives et conseils d'utilisation</p>
                 <form class="row justify-content-center g-3">
@@ -185,4 +339,143 @@
         </div>
     </div>
 </section>
+
+<!-- Back to Top Button -->
+<button id="backToTop" class="btn btn-success rounded-circle p-3">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
 {% endblock main-content %}
+
+{% block page_specific_scripts %}
+<script src="{% static 'app/js/home.js' %}"></script>
+{% endblock page_specific_scripts %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                
+                // Start counter animation if it's a counter element
+                if (entry.target.querySelector('.counter-value')) {
+                    const counterElements = entry.target.querySelectorAll('.counter-value');
+                    counterElements.forEach(counter => {
+                        animateCounter(counter);
+                    });
+                }
+                
+                // Animate progress bars
+                if (entry.target.querySelector('.progress-bar')) {
+                    const progressBars = entry.target.querySelectorAll('.progress-bar');
+                    progressBars.forEach(bar => {
+                        const width = bar.getAttribute('data-width');
+                        bar.style.width = width + '%';
+                    });
+                }
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    // Observe all fade-in elements
+    document.querySelectorAll('.fade-in').forEach(element => {
+        observer.observe(element);
+    });
+
+    // Counter animation function
+    function animateCounter(counter) {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000; // 2 seconds
+        const step = target / (duration / 16); // 60fps
+        let current = 0;
+
+        const updateCounter = () => {
+            current += step;
+            if (current < target) {
+                counter.textContent = Math.round(current);
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target;
+            }
+        };
+
+        updateCounter();
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Back to top button
+    const backToTopButton = document.getElementById('backToTop');
+    
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopButton.style.display = 'block';
+            setTimeout(() => backToTopButton.classList.add('visible'), 50);
+        } else {
+            backToTopButton.classList.remove('visible');
+            setTimeout(() => backToTopButton.style.display = 'none', 300);
+        }
+    });
+
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Newsletter form submission
+    const newsletterForm = document.querySelector('form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            if (emailInput.value) {
+                // Simulate form submission
+                const button = this.querySelector('button[type="submit"]');
+                const originalText = button.innerHTML;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Inscription...';
+                
+                setTimeout(() => {
+                    button.innerHTML = '<i class="fas fa-check me-2"></i>Inscrit !';
+                    emailInput.value = '';
+                    
+                    setTimeout(() => {
+                        button.innerHTML = originalText;
+                    }, 2000);
+                }, 1500);
+            }
+        });
+    }
+
+    // Product card hover effect
+    document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.querySelector('img').style.transform = 'scale(1.05)';
+            this.querySelector('img').style.transition = 'transform 0.3s ease';
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.querySelector('img').style.transform = 'scale(1)';
+        });
+    });
+});
+</script>
+{% endblock %}

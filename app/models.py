@@ -29,7 +29,8 @@ class Product(models.Model):
         return self.title
 
 class Customer(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    # Removed user field to allow free access without authentication
+    # user = models.ForeignKey(User,on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     locality = models.CharField(max_length=200)
     city = models.CharField(max_length=50)
@@ -40,7 +41,8 @@ class Customer(models.Model):
         return self.name
 
 class Cart(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    # Removed user field to allow free access without authentication
+    # user = models.ForeignKey(User,on_delete=models.CASCADE)
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
 
@@ -58,7 +60,8 @@ STATUS_CHOICES = (
 )
 
 class Payment(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE) 
+    # Removed user field to allow free access without authentication
+    # user = models.ForeignKey(User,on_delete=models.CASCADE) 
     amount = models.FloatField()
     razorpay_order_id = models.CharField(max_length=100,blank=True,null=True)
     razorpay_payment_status = models.CharField(max_length=100,blank=True,null=True)
@@ -66,8 +69,9 @@ class Payment(models.Model):
     paid = models.BooleanField(default=False)
 
 class OrderPlaced(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE) 
-    customer = models.ForeignKey(Customer,on_delete=models.CASCADE)
+    # Removed user field to allow free access without authentication
+    # user = models.ForeignKey(User,on_delete=models.CASCADE) 
+    customer = models.ForeignKey(Customer,on_delete=models.CASCADE, null=True, blank=True)  # Make nullable
     product = models.ForeignKey(Product,on_delete=models.CASCADE) 
     quantity = models.PositiveIntegerField(default=1)
     ordered_date = models.DateTimeField(auto_now_add=True)
@@ -78,5 +82,6 @@ class OrderPlaced(models.Model):
         return self.quantity * self.product.discounted_price
 
 class Wishlist(models.Model):
-    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    # Removed user field to allow free access without authentication
+    # user = models.ForeignKey(User,on_delete=models.CASCADE)
     product = models.ForeignKey(Product,on_delete=models.CASCADE)

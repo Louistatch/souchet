@@ -8,16 +8,11 @@ from . forms import CustomerProfileForm, CustomerRegistrationForm
 from django.contrib import messages
 from django.db.models import Q
 from django.conf import settings
-from django.utils.decorators import method_decorator
 
 # Create your views here.
 def home(request):
     totalitem = 0
     wishitem = 0
-    if request.user.is_authenticated:
-        totalitem = len(Cart.objects.filter(user=request.user))
-        wishitem = len(Wishlist.objects.filter(user=request.user))
-    
     # Récupérer les produits pour chaque catégorie
     liqueurs = Product.objects.filter(category='ME')[:1]
     farines = Product.objects.filter(category='FA')[:1]
@@ -90,7 +85,6 @@ class ProfileView(View):
     def post(self,request):
         form = CustomerProfileForm(request.POST)
         if form.is_valid():
-            user = request.user
             name = form.cleaned_data['name']
             locality = form.cleaned_data['locality']
             city = form.cleaned_data['city']
@@ -98,7 +92,7 @@ class ProfileView(View):
             state = form.cleaned_data['state']
             zipcode = form.cleaned_data['zipcode']
 
-            reg = Customer(user=user,name=name,locality=locality,mobile=mobile,city=city,state=state,zipcode=zipcode)
+            reg = Customer(name=name,locality=locality,mobile=mobile,city=city,state=state,zipcode=zipcode)
             reg.save()
             messages.success(request, "Félicitations ! Le profil a été enregistré avec succès.")
         else:
@@ -108,7 +102,7 @@ class ProfileView(View):
 def address(request):
     totalitem = 0
     wishitem = 0
-    add = Customer.objects.filter(user=request.user)
+    add = Customer.objects.all()
     return render(request, 'app/address.html',locals())
 
 class updateAddress(View):
