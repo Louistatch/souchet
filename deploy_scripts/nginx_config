@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    server_name laclemencegroupe.com www.laclemencegroupe.com;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    
+    location /static/ {
+        alias /home/django/souchet/staticfiles/;
+    }
+    
+    location /media/ {
+        alias /home/django/souchet/media/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/django/souchet/laclemencegroupe.sock;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}

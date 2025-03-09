@@ -1,0 +1,4 @@
+DEBUG=False
+SECRET_KEY=votre_clé_secrète_django_complexe_ici
+ALLOWED_HOSTS=laclemencegroupe.com,www.laclemencegroupe.com,ip_de_votre_serveur
+DATABASE_URL=sqlite:///db.sqlite3
