@@ -24,11 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-hguv9*+03^vr_y5ac(6jwy04lbv#7d0n#!nqcyd68y1cfon)7g"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# Activer le mode debug en environnement local
+DEBUG = not (os.environ.get('VERCEL') == 'true' or os.environ.get('NETLIFY') == 'true')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app', '.now.sh', 'www.laclemencegroupe.com', 'laclemencegroupe.com', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app', '.now.sh', '.netlify.app', 'www.laclemencegroupe.com', 'laclemencegroupe.com', '.pythonanywhere.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com', 'https://www.laclemencegroupe.com']
+CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com', 'https://www.laclemencegroupe.com', 'https://*.netlify.app']
 
 # Application definition
 
@@ -44,6 +45,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # WhiteNoise middleware conditionnel
+    *([
+        "whitenoise.middleware.WhiteNoiseMiddleware",
+    ] if os.environ.get('VERCEL') == 'true' or os.environ.get('NETLIFY') == 'true' else []),
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -65,6 +70,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.media",  # Add media context processor
             ],
         },
     },
@@ -116,16 +122,13 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Pour Vercel - STATICFILES_DIRS alternatif pour environnement serverless
-if os.environ.get('VERCEL'):
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, 'app/static'),
-    ]
-    # Pour servir les fichiers statiques en production
-    MIDDLEWARE.append('whitenoise.middleware.WhiteNoiseMiddleware')
+# Configuration de WhiteNoise uniquement pour Vercel ou Netlify
+if os.environ.get('VERCEL') == 'true' or os.environ.get('NETLIFY') == 'true':
+    # Configuration de WhiteNoise pour l'environnement de production
+    WHITENOISE_USE_FINDERS = True
+    WHITENOISE_MANIFEST_STRICT = False
+    WHITENOISE_AUTOREFRESH = True
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

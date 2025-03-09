@@ -1,0 +1,3 @@
+/static/*  /static/:splat  200
+/media/*   /media/:splat   200
+/*         /.netlify/functions/django  200

@@ -8,6 +8,7 @@ django-filter
 django-widget-tweaks
 gunicorn==23.0.0
 idna==3.8
+mangum==0.17.0
 packaging==24.2
 Pillow
 razorpay==1.4.2

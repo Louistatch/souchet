@@ -11,3 +11,6 @@ env.bak/
 venv.bak/
 .env.prod
 staticfiles/
+
+# Local Netlify folder
+.netlify

@@ -1,0 +1,12 @@
+{
+  "name": "la-clemence-groupe",
+  "version": "1.0.0",
+  "description": "Site web de La Clémence Groupe",
+  "scripts": {
+    "build": "bash netlify-build.sh",
+    "dev": "python manage.py runserver"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,0 +1,32 @@
+[build]
+  command = "bash netlify-build.sh"
+  publish = "staticfiles"
+  functions = "netlify/functions"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+  NETLIFY = "true"
+
+[dev]
+  command = "python manage.py runserver"
+  port = 8000
+  targetPort = 8000
+
+# Redirection pour les fichiers statiques
+[[redirects]]
+  from = "/static/*"
+  to = "/static/:splat"
+  status = 200
+
+# Redirection pour les fichiers media
+[[redirects]]
+  from = "/media/*"
+  to = "/media/:splat"
+  status = 200
+
+# Redirection pour toutes les autres routes vers la fonction Django
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/django"
+  status = 200
+  force = true
