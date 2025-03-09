@@ -7,6 +7,7 @@
     "dev": "python manage.py runserver"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=18.0.0",
+    "python": "3.11"
   }
 }

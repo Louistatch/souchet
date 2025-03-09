@@ -1,0 +1,14 @@
+build:
+  environment:
+    PYTHON_VERSION: 3.11
+    NODE_VERSION: 18
+
+  # Commande exécutée au début du build
+  base: "bash netlify-build.sh"
+
+# Installation des dépendances explicite
+plugins:
+  - package: "@netlify/plugin-python"
+    inputs:
+      pythonVersion: "3.11"
+      pipCommand: "pip install -r requirements-netlify.txt"
