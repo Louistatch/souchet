@@ -27,9 +27,9 @@ SECRET_KEY = "django-insecure-hguv9*+03^vr_y5ac(6jwy04lbv#7d0n#!nqcyd68y1cfon)7g
 # Activer le mode debug en environnement local
 DEBUG = not (os.environ.get('VERCEL') == 'true' or os.environ.get('NETLIFY') == 'true')
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app', '.now.sh', '.netlify.app', 'www.laclemencegroupe.com', 'laclemencegroupe.com', '.pythonanywhere.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app', '.now.sh', '.netlify.app', 'www.laclemencegroupe.com', 'laclemencegroupe.com', '.pythonanywhere.com', 'whale-app-ti4j4.ondigitalocean.app', '.ondigitalocean.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com', 'https://www.laclemencegroupe.com', 'https://*.netlify.app']
+CSRF_TRUSTED_ORIGINS = ['https://laclemencegroupe.com', 'https://www.laclemencegroupe.com', 'https://*.netlify.app', 'https://*.ondigitalocean.app']
 
 # Application definition
 
